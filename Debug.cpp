@@ -36,3 +36,22 @@ void debugEncoder(int mode){
 	Serial.println("Right " + String(statusOptR));
 	Serial.println("Left "  + String(statusOptL));
 }
+
+void debugMotorSpeed() {
+	//turn the motor on at some speed < 255
+	NanoDrive(0, 200, 1);
+	
+	for(int i = 0; i < 20; i++) {
+		delay(100);
+		Serial.print(_Nano_left_ticks);
+	}
+	
+	NanoStop();
+	
+	for(int i = 0; i < 20; i++) {
+		delay(100);
+		Serial.print(_Nano_left_ticks);
+	}
+	
+	
+}

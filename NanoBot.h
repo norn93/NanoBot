@@ -10,6 +10,7 @@
 
 // include necessary libraries
 #include "Arduino.h"
+#include "Debug.cpp"
 
 //Motor A
 #define EN1 5 //Speed control blue

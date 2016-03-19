@@ -1,7 +1,7 @@
 /*
  Robot.cpp - Library to control robots
  Created by D'Cruz A., Knowlden G., Siew K., November 2015
- Last updated 2015-11-03
+ Last updated 2016-03-19
  */
  
  //include header files

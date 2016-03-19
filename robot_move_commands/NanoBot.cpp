@@ -4,17 +4,14 @@
  Last updated 2015-11-03
  */
  
-//include header files
+ //include header files
 #include "NanoBot.h"
 #include "PinChangeInt.h"
 
-//global variables
-
-//motors
+//variables
 char _Nano_left_direction;
 char _Nano_right_direction;
 
-//encoders (still debugging)
 int _Nano_left_ticks;
 int _Nano_left_ticks_last;
 bool _Nano_debug_print_encoder_left;
@@ -39,6 +36,7 @@ void NanoInitialise() {
 	PCintPort::attachInterrupt(OPT_L, _NanoOptocouplerLeft, RISING); //only detect slits (it's 0 on slit and 1 on wood so we are detecting moving from slit to wood right?)
 	pinMode(OPT_R, INPUT);
 	PCintPort::attachInterrupt(OPT_R, _NanoOptocouplerRight, RISING); //only detect slits
+	
 	
 	//initialise the interrupts
 	cli(); //pause interrupts to set up sensitive stuff
@@ -146,6 +144,7 @@ void _NanoOptocouplerLeft() {
 		//Serial.println(_Nano_left_ticks);
 		//Serial.print("\t");
 	}
+	
 }
 
 void _NanoOptocouplerRight() {

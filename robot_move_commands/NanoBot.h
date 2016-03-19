@@ -38,8 +38,7 @@ void NanoDrive(int motor, int speed, int direction);
 void NanoForward();
 void NanoBackward();
 void NanoStop();
-void NanoTurnRight(int duration, char direction);
-void NanoTurnLeft(int duration, char direction);
+void NanoTurn(int duration, char direction);
 void _NanoOptocouplerLeft();
 void _NanoOptocouplerRight();
 

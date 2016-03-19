@@ -1,11 +1,11 @@
 /*
- Debug.cpp - Library to control robots
+ Debug.cpp - Library to debug robots
  Created by D'Cruz A., Knowlden G., Siew K., November 2015
  Last updated 2015-11-03
  */
  
  //include header files
-#include "NanoBot.h"
+#include "Debug.h"
 #include "PinChangeInt.h"
 
 //variables

@@ -11,3 +11,6 @@
 // include necessary libraries
 #include "Arduino.h"
 #include "Debug.h"
+
+void debugEncoder(int mode);
+void debugMotorSpeed();

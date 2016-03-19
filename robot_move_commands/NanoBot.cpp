@@ -103,12 +103,12 @@ void NanoDrive(int motor, int speed, int direction)
 }
 
 //these next 2 functions will be replaced by ones with closed loops
-void NanoForward() {
+void NanoForward(int duration) {
 	NanoDrive(1, 255, 1);
 	NanoDrive(0, 255, 1);
 }
 
-void NanoBackward() {
+void NanoBackward(int duration) {
 	NanoDrive(1, 255, -1);
 	NanoDrive(0, 255, -1);
 }
@@ -126,8 +126,6 @@ void NanoTurn(int duration, char direction) {
 		else if(direction == 'd'){
 			NanoDrive(1, 255, 1);
 		}
-		delay(duration);
-		NanoStop();
 }
 
 
@@ -169,7 +167,7 @@ void _NanoMotorTest() {
 	//Serial.print("\t");
 	//Serial.println(_Nano_left_ticks);
 	
-	NanoForward();
+	NanoForward(500);
 	
 	/*for (int i = 0; i < 100; i++) {
 		//Serial.println(_Nano_left_speed);

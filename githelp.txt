@@ -2,3 +2,21 @@
 2) git add . (adds all the files to the 'index')
 3) git commit -m "message (records changes to the repo)
 4) git push orogin master (to push onto the server)
+
+Branching
+1) git branch branch_name (create a branch with that name)
+2) checkout branch_name (change which branch you're in)
+
+Push branch to remote repository
+1) git push -u origin branch_name
+2) git branch -a (list all branches)
+
+Merge a branch with master
+1) git checkout master (switch to master)
+2) git pull origin master
+3) git branch --merged (check if they are merged)
+4) git merge branch_name (merge changes to master)
+5) git push origin master (push to master branch)
+
+Delete a branch
+1) git branch -d branch_name

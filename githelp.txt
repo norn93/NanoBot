@@ -5,7 +5,7 @@
 
 Branching
 1) git branch branch_name (create a branch with that name)
-2) checkout branch_name (change which branch you're in)
+2) git checkout branch_name (change which branch you're in)
 
 Push branch to remote repository
 1) git push -u origin branch_name

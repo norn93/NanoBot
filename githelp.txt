@@ -1,7 +1,7 @@
 1) git pull (to get up to date with the branch)
 2) git add . (adds all the files to the 'index')
 3) git commit -m "message (records changes to the repo)
-4) git push orogin master (to push onto the server)
+4) git push origin master (to push onto the server)
 
 Branching
 1) git branch branch_name (create a branch with that name)

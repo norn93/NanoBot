@@ -1,0 +1,68 @@
+Git Centralised Workflow Guide V0.1
+By George Knowlden, based on notes from https://www.atlassian.com/git/tutorials/comparing-workflows#centralized-workflow
+____________________________________________________________________________________________________________________________________________
+
+Single point-of-entry for all changes to the project: master.
+No other branches are required.
+
+Firstly, clone the central repository.
+
+To publish a feature: fetch updated central commits and reabse their changes on top of them.
+"I want to add my changes to what everyone else has done."
+
+If there are conflicts (local changes conflict with upstream commits), Git will pause the rebase and let you manually resolve the conflicts.
+
+You can use the "git status" and "git add" commands for both generating commits and resolving conflicts.
+There is also a command to abort the rebase and try again.
+
+INIT
+
+1) Someone initialises the central repository (easiest to do this online)
+2) Everybody clones the central repository (git clone xxxxxx)
+
+WORKING LOCALLY
+
+3) Edit files
+4) git status
+5) git add
+6) git commit
+
+PUBLISHING
+
+7) git push origin master (make origins's master branch look like your local master branch)
+
+If there are no errors, you're done! Else...
+
+REBASING (in the case of a failure to publish)
+
+Error looks like the following:
+error: failed to push some refs to '/path/to/repo.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Merge the remote changes (e.g. 'git pull')
+hint: before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+8) git pull --rebase origin master (try to make local master branch look like origin's master)
+"Rebase" moves your changes to the end, so that the pull happens first, and then Git will try to merge the files
+
+MERGING
+
+Trasfer local commits to updated master one at a time.
+
+Example of error in merging:
+CONFLICT (content): Merge conflict in <some-file>
+9) git status (shows the location of the problem in the following format:)
+# Unmerged paths:
+# (use "git reset HEAD <some-file>..." to unstage)
+# (use "git add/rm <some-file>..." as appropriate to mark resolution)
+#
+# both modified: <some-file>
+
+10) Edit the file/s until things are good
+11) git add <file>
+12) git rebase --continue
+Git will now repeat for the next commit, and repeat.
+
+If at any point from 8-12 you get stuck, run the following to take you back to before 8):
+13) git rebase --abort
+When you've finished 12) for the last time, you can run 7)

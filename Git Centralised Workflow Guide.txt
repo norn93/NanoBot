@@ -19,9 +19,14 @@ INIT
 
 1) Someone initialises the central repository (easiest to do this online)
 2) Everybody clones the central repository (git clone xxxxxx)
+2.3) Make sure that 
+	git config merge.tool vimdiff
+	git config merge.conflictstyle diff3
+
 
 WORKING LOCALLY
 
+2.5) git pull origin master (to get latest versions of files)
 3) Edit files
 4) git status
 5) git add
@@ -59,8 +64,9 @@ CONFLICT (content): Merge conflict in <some-file>
 # both modified: <some-file>
 
 10) Edit the file/s until things are good
+	git mergetool
 11) git add <file>
-12) git rebase --continue
+12) git rebase --continue (or --skip)
 Git will now repeat for the next commit, and repeat.
 
 If at any point from 8-12 you get stuck, run the following to take you back to before 8):

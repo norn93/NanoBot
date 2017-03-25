@@ -1,0 +1,50 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP 68711014522
+D Wurth Elektronik 687 Series 0.5mm Pitch 10 Way Straight SMT FPC Connector
+K SMT FPC
+F http://docs-asia.electrocomponents.com/webdocs/1113/0900766b81113bfe.pdf
+$ENDCMP
+#
+$CMP 7805
+D Linear Regulator +5V
+K POWER REGUL
+F regulator\lm78xx.pdf
+$ENDCMP
+#
+$CMP 78L05
+D Linear Regulator +5V
+K POWER REGUL
+F regulator\lm78lxx.pdf
+$ENDCMP
+#
+$CMP LM7805
+D Linear Regulator +5V
+K POWER REGUL
+F regulator\lm78xx.pdf
+$ENDCMP
+#
+$CMP LM7812
+D Linear Regulator +12V
+K POWER REGUL
+F regulator\lm78xx.pdf
+$ENDCMP
+#
+$CMP MCP73811
+D Li-Ion Charge Management Controller
+K charge controller lithium
+F C:/Users/George/Dropbox/KiCad/Watch/Datasheets/MCP73811.pdf
+$ENDCMP
+#
+$CMP MCP7940M
+D Real-Time Clock, I2C
+K realtime clock RTC
+F C:/Users/George/Dropbox/KiCad/Watch/Datasheets/MCP7940M.pdf
+$ENDCMP
+#
+$CMP TP4056
+D 1A Standalone Linear Li-lon Battery Charger
+F https://dlnmh9ip6v2uc.cloudfront.net/datasheets/Prototyping/TP4056.pdf
+$ENDCMP
+#
+#End Doc Library

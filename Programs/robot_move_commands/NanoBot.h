@@ -4,7 +4,7 @@
  Last updated 2015-11-03
  */
  
- // ensure this library description is only included once
+// ensure this library description is only included once
 #ifndef NanoBot_h
 #define NanoBot_h
 

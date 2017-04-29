@@ -14,7 +14,8 @@ char _Nano_right_direction;
 
 int _Nano_left_ticks;
 int _Nano_left_ticks_last;
-bool _Nano_debug_print_encoder_left;
+bool _Nano_debug_print_encoder_left;  //left optocoupler not working
+bool _Nano_debug_print_encoder_right;
 long _Nano_debug_start_time_micros;
 
 int _Nano_right_ticks;
@@ -152,6 +153,12 @@ void _NanoOptocouplerRight() {
 	} else { //driving backward
 		_Nano_right_ticks--;
 	}
+
+  if (_Nano_debug_print_encoder_right) {
+    Serial.println(micros()-_Nano_debug_start_time_micros);
+    //Serial.println(_Nano_left_ticks);
+    //Serial.print("\t");
+  }
 }
 
 void _NanoMotorTest() {
@@ -159,7 +166,8 @@ void _NanoMotorTest() {
 	
 	Serial.println("Start speed test...");
 	
-	_Nano_debug_print_encoder_left = true;
+	//_Nano_debug_print_encoder_left = true;
+  _Nano_debug_print_encoder_right = true;
 	
 	_Nano_debug_start_time_micros = micros();
 	
@@ -189,7 +197,8 @@ void _NanoMotorTest() {
 	
 	delay(1000);
 	
-	_Nano_debug_print_encoder_left = false;
+	//_Nano_debug_print_encoder_left = false;
+  _Nano_debug_print_encoder_right = false;
 	
 	Serial.println("Stop speed test.");
 	

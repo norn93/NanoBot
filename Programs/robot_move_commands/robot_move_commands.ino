@@ -5,6 +5,8 @@ void setup() {
   NanoInitialise();
   _NanoInitialiseMotors();
   Serial.begin(9600);
+   _NanoMotorTest(); 
+  //Serial.println("I'm alive");
 }
 
 void serialEvent() {
@@ -38,5 +40,4 @@ void serialEvent() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-
 }

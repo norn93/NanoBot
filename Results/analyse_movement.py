@@ -30,6 +30,7 @@ def loadData(plot = True, fname = "speed_motor_test_results.csv"):
         plt.plot(times, ticks, 'ro-')
         plt.ylabel('Ticks')
         plt.xlabel('Time (ms)')
+        #plt.show()
 
     print("Data is", times[-1], "ms long.")
 
@@ -44,7 +45,7 @@ def simulateData(t_inc, t_max, ticks, times):
     #t_max = 2000 #when it's stopped moving, approximately
     t = 0
     velocity_times = [] #the times at which we sampled the optocoupler (actually speed. whatever...)
-    velocity_ticks = [] #the ticks at each given sample time
+    velocity_ticks = [] #the number of ticks at each given sample time
 
     for t in range(0, t_max, t_inc):
         current_tick = 0 #assume we have completed no ticks
@@ -67,11 +68,24 @@ def simulateData(t_inc, t_max, ticks, times):
         velocity_estimates.append(1000/ticks_per_revolution*(velocity_ticks[i]-velocity_ticks[i-1])/t_inc) #distance/time
 
     #plot the speed data
-    plt.figure("Estimated Velocity from Sampled Data")
-    plt.plot(velocity_times, velocity_estimates, 'ro-')
-    plt.ylabel('Velocity')
-    plt.xlabel('Time (ms)')
-    plt.show()    
+    #plt.figure("Estimated Velocity from Sampled Data")
+    #plt.plot(velocity_times, velocity_estimates, 'ro-')
+    #plt.ylabel('Velocity')
+    #plt.xlabel('Time (ms)')
+    #plt.show()
+
+    return [velocity_estimates, velocity_times]
     
-[ticks, times] = loadData(plot = False)
-simulateData(75, 2000, ticks, times)
+[ticks, times] = loadData(plot = True)
+
+plt.figure("Estimated Velocity from Sampled Data")
+test_times = [50, 60, 70, 80, 90]
+for i in range(len(test_times)):
+    [speeds, speed_times] = simulateData(test_times[i], 2000, ticks, times)
+    plt.plot(speed_times, speeds, 'o-')
+plt.ylabel('Velocity')
+plt.xlabel('Time (ms)')
+plt.legend(test_times)
+plt.show()
+
+a = input("Program ended...")

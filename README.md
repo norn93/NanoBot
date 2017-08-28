@@ -12,8 +12,7 @@ ANDRIS is an educational platform for highschool and university students to use 
 	* robot_move_commands: A basic sketch for Alfie. Control the robot via bluetooth and keyboard. 
 
 ## Hardware todo:
-* Revise PCB
-	* Include switches
+* Test V0.11 of the PCB when it arrives
 	
 ## Software todo:
 * Edit library: it should only include the bare minimum it needs to function, and it should be commented clearly

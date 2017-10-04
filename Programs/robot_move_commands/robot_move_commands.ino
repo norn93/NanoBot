@@ -1,12 +1,9 @@
 #include "NanoBot.h"
 
 void setup() {
-  // put your setup code here, to run once:
   NanoInitialise();
-  _NanoInitialiseMotors();
-  Serial.begin(9600);
-   _NanoMotorTest(); 
   //Serial.println("I'm alive");
+  _Nano_debug_print_encoder_left = true;
 }
 
 void serialEvent() {
@@ -17,23 +14,18 @@ void serialEvent() {
     char inCommand =  (char)Serial.read();
     if (inCommand == 'w') {
       NanoForward(500);
-      delay(500);
-      NanoStop();
     }
     if (inCommand == 's') {
       NanoBackward(500);
-      delay(500);
-      NanoStop();
     }
     if (inCommand == 'a') {
-      NanoTurn(500, inCommand);
-      delay(500);
-      NanoStop();
+      NanoTurn('l', 150);
     }
     if (inCommand == 'd') {
-      NanoTurn(500, inCommand);
-      delay(500);
-      NanoStop();
+      NanoTurn('r', 150);
+    }
+    if (inCommand == 't') { //test the motors
+      
     }
   }
 }

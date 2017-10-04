@@ -3,7 +3,6 @@
 void setup() {
   NanoInitialise();
   //Serial.println("I'm alive");
-  _Nano_debug_print_encoder_left = true;
 }
 
 void serialEvent() {
@@ -23,9 +22,6 @@ void serialEvent() {
     }
     if (inCommand == 'd') {
       NanoTurn('r', 150);
-    }
-    if (inCommand == 't') { //test the motors
-      
     }
   }
 }

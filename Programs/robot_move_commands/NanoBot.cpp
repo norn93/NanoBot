@@ -162,7 +162,6 @@ void NanoTurn(char turn_direction, int duration) {
   NanoStop();
 }
 
-
 void _NanoOptocouplerLeft() {
   //callback for the left optocoupler
   if (_Nano_left_direction) { //driving forward

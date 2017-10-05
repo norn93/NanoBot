@@ -2,7 +2,7 @@
 
 void setup() {
   NanoInitialise();
-  //Serial.println("I'm alive");
+  Serial.println("I'm alive");
 }
 
 void serialEvent() {
@@ -24,6 +24,10 @@ void serialEvent() {
       NanoTurn('r', 150);
     }
   }
+}
+
+void test() {
+  return;
 }
 
 void loop() {

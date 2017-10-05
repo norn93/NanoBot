@@ -5,7 +5,6 @@ void setup() {
   NanoInitialise();
   _NanoInitialiseMotors();
   NanoForward(500);
-  delay(500);
   NanoStop();
 }
 

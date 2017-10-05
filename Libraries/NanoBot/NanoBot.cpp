@@ -6,7 +6,7 @@
 
 //include header files
 #include "NanoBot.h"
-#include "PinChangeInt.h"
+#include <PinChangeInt.h>
 
 //variables
 char _Nano_left_direction;
@@ -28,9 +28,6 @@ float _Nano_left_speed;
 //functions
 void NanoInitialise() {
   //initialise the nanoBot
-
-  //start serial
-  Serial.begin(9600);
 
   //initialise the motors
   _NanoInitialiseMotors();
@@ -94,39 +91,40 @@ void NanoDrive(float motor_a_speed, float motor_b_speed)
   if (motor_a_speed > 0) { //forward
     in1 = LOW;
     in2 = HIGH;
-    _Nano_left_direction = 0; //todo: fix this
-    _Nano_right_direction = 0; //todo: fix this
-  } else { //backward
+    _Nano_left_direction = 1; //forward
+  } else if (motor_a_speed < 0) { //backward
     in1 = HIGH;
     in2 = LOW;
-    _Nano_left_direction = 1; //todo: fix this
-    _Nano_right_direction = 1; //todo: fix this
+    _Nano_left_direction = 0; //backward
+  } else { //stop
+	in1 = LOW;
+    in2 = LOW;
   }
 
   if (motor_b_speed > 0) { //forward
     in3 = LOW;
     in4 = HIGH;
-    _Nano_left_direction = 0; //todo: fix this
-    _Nano_right_direction = 0; //todo: fix this
-  } else { //backward
+    _Nano_right_direction = 1; //forward
+  } else if (motor_b_speed < 0) { //backward
     in3 = HIGH;
     in4 = LOW;
-    _Nano_left_direction = 1; //todo: fix this
-    _Nano_right_direction = 1; //todo: fix this
+    _Nano_right_direction = 0; //backward
+  } else { //stop
+	in3 = LOW;
+    in4 = LOW;
   }
 
-  //set the motors
+  //set the motor directions
   digitalWrite(IN1, in1);
   digitalWrite(IN2, in2);
   digitalWrite(IN3, in3);
   digitalWrite(IN4, in4);
 
-  //run the motors
-  int speed_a = abs(motor_a_speed)*255;
-  int speed_b = abs(motor_b_speed)*255;
+  //run the motors at the required speeds
+  int speed_a = abs(motor_a_speed) * 255;
+  int speed_b = abs(motor_b_speed) * 255;
   analogWrite(EN1, speed_a);
   analogWrite(EN2, speed_b);
-
 }
 
 //these next 2 functions will eventually be replaced by ones with closed loops
@@ -147,7 +145,7 @@ void NanoStop() {
   NanoDrive(0, 0);
 }
 
-void NanoTurn(char turn_direction, int duration) {
+void NanoTurn(int duration, char turn_direction) {
   if (turn_direction == 'a' || turn_direction == 'l') {
     NanoDrive(-1, 1);
   }
@@ -156,12 +154,11 @@ void NanoTurn(char turn_direction, int duration) {
   } else {
     Serial.print("Turn direction: '");
     Serial.print(turn_direction);
-    Serial.println("' not recongised.");
+    Serial.println("' not recongised. Correct format is 'int duration, char turn_direction'");
   }
   delay(duration);
   NanoStop();
 }
-
 
 void _NanoOptocouplerLeft() {
   //callback for the left optocoupler
@@ -192,45 +189,6 @@ void _NanoOptocouplerRight() {
     //Serial.println(_Nano_left_ticks);
     //Serial.print("\t");
   }
-}
-
-void _NanoMotorTest() {
-  //a small function to help tune the motor controllers
-
-  Serial.println("Start speed test...");
-
-  //_Nano_debug_print_encoder_left = true;
-  _Nano_debug_print_encoder_right = true;
-
-  _Nano_debug_start_time_micros = micros();
-
-  Serial.println(micros() - _Nano_debug_start_time_micros);
-  //Serial.print("\t");
-  //Serial.println(_Nano_left_ticks);
-
-  NanoForward(1000);
-
-  /*for (int i = 0; i < 100; i++) {
-  	//Serial.println(_Nano_left_speed);
-  	Serial.println(_Nano_left_ticks);
-  	delay(5);
-    }*/
-
-  Serial.println("Switch off motor...");
-
-  /*for (int i = 0; i < 100; i++) {
-  	//Serial.println(_Nano_left_speed);
-  	Serial.println(_Nano_left_ticks);
-  	delay(5);
-    }*/
-
-  delay(1000);
-
-  //_Nano_debug_print_encoder_left = false;
-  _Nano_debug_print_encoder_right = false;
-
-  Serial.println("Stop speed test.");
-
 }
 
 //void NanoDriveStraightForwardNaive(int distance) {

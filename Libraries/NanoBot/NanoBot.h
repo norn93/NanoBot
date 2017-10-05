@@ -12,14 +12,14 @@
 #include "Arduino.h"
 
 //Motor A
-#define EN1 6 //Speed control blue
-#define IN1 2 //Direction green
-#define IN2 3 //Direction yellow
+#define EN1 6 //PWM speed control
+#define IN1 2 //Direction control 1
+#define IN2 3 //Direction control 2
 
 //Motor B
-#define EN2 7 //Speed control blue
-#define IN3 4 //Direction green
-#define IN4 5 //Direction yellow
+#define EN2 7 //PWM speed control
+#define IN3 4 //Direction control 1
+#define IN4 5 //Direction control 2
 
 //encoders
 #define OPT_L A0
@@ -38,26 +38,32 @@ void NanoDrive(float motor_a_speed, float motor_b_speed);
 void NanoForward(int duration);
 void NanoBackward(int duration);
 void NanoStop();
-void NanoTurn(char turn_direction, int duration);
+void NanoTurn(int duration, char turn_direction);
 void _NanoOptocouplerLeft();
 void _NanoOptocouplerRight();
 
-extern char _Nano_left_direction;
-extern char _Nano_right_direction;
+extern char _Nano_left_direction; //the current direction of the left motor
+extern char _Nano_right_direction; //the current direction of the right motor
 
-extern int _Nano_left_ticks;
+extern int _Nano_left_ticks; //keeps track of current position of the left encoder
+extern int _Nano_right_ticks; //keeps track of current position of the right encoder
+
+extern bool _Nano_debug_print_encoder_left; //controls if the left encoder is printed
+extern bool _Nano_debug_print_encoder_right; //controls if the right encoder is printed
+
 extern int _Nano_left_ticks_last;
-extern bool _Nano_debug_print_encoder_left;
-
-extern int _Nano_right_ticks;
+extern int _Nano_right_ticks_last;
 
 extern long _Nano_left_micros;
 extern long _Nano_left_micros_last;
 
-extern float _Nano_left_speed;
+extern long _Nano_right_micros;
+extern long _Nano_right_micros_last;
 
-void _NanoMotorTest();
-void _NanoRawMotor(bool a, bool b, bool c, bool, bool d);
+extern float _Nano_left_speed;
+extern float _Nano_right_speed;
+
+//void _NanoEncoderTest(char encoder_side);
 void NanoDriveStraightForwardNaive(int distance);
 
 #endif
